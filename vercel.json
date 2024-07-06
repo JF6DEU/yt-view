@@ -13,7 +13,7 @@
        }
    ],
    "functions": {
-    "pages/**/*.py": {
+    "/pub/*.py": {
       "maxDuration": 30
     }
    }
