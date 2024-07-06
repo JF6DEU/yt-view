@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from yt_dlp import YoutubeDL as y
 def videocatch_new(videoid):
@@ -44,3 +43,7 @@ async def ytview():
       "a":m['a'],
       "comment":m['comment']
    })
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app)
