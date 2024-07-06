@@ -11,10 +11,5 @@
            "src": "/(.*)",
            "dest": "/pub/index.py"
        }
-   ],
-   "functions": {
-    "/pub/*.py": {
-      "maxDuration": 30
-    }
-   }
+   ]
 }
