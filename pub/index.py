@@ -31,18 +31,12 @@ def videocatch_new(videoid):
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
-template = Jinja2Templates(directory="../templates").TemplateResponse
+template = Jinja2Templates(directory="templates").TemplateResponse
 
 @app.get("/", response_class=HTMLResponse)
 async def ytview():
    m = videocatch_new("RfQ9OcQxwOs")
-   return template("main.html", {
-      "title":m["title"],
-      "description":m["description"],
-      "v":m["v"],
-      "a":m['a'],
-      "comment":m['comment']
-   })
+   return template("main.html", {"title":m["title"],"description":m["description"],"v":m["v"],"a":m['a'],"comment":m['comment']})
 
 if __name__ == '__main__':
     import uvicorn
