@@ -34,8 +34,8 @@ app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 template = Jinja2Templates(directory="templates").TemplateResponse
 
 @app.get("/", response_class=HTMLResponse)
-async def ytview(request: Request):
-   m = videocatch_new("RfQ9OcQxwOs")
+async def ytview(request: Request, vid:str):
+   m = videocatch_new(vid)
    return template("main.html", {
        "title":m["title"],
        "description":m["description"],
