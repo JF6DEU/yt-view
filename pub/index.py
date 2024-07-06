@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from yt_dlp import YoutubeDL as y
 def videocatch_new(videoid):
-    with y({"getcomments": True, "quiet" : True}) as ydl:
+    with y({"getcomments": True, "quiet" : True, "cachedir":False}) as ydl:
       results = {}
       vr = ydl.extract_info("https://www.youtube.com/watch?v=" + videoid, download=False)
       results['v'] = vr['requested_formats'][0]["url"]
