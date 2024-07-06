@@ -1,5 +1,6 @@
 {
    "version": 2,
+   "devCommand": "uvicorn --port $PORT --host 0.0.0.0 main:app",
    "builds": [
        {
            "src": "./pub/index.py",
