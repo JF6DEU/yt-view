@@ -13,7 +13,7 @@
        }
    ],
    "functions": {
-    "index.py": {
+    "/pub/index.py": {
       "maxDuration": 30
     }
    }
