@@ -31,7 +31,7 @@ def videocatch_new(videoid):
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
-template = Jinja2Templates(directory="templates").TemplateResponse
+template = Jinja2Templates(directory="../templates").TemplateResponse
 
 @app.get("/", response_class=HTMLResponse)
 async def ytview():
