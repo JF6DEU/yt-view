@@ -1,7 +1,46 @@
-from flask import Flask
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from yt_dlp import YoutubeDL as y
+def videocatch_new(videoid):
+    with y({"getcomments": True, "quiet" : True}) as ydl:
+      results = {}
+      vr = ydl.extract_info("https://www.youtube.com/watch?v=" + videoid, download=False)
+      results['v'] = vr['requested_formats'][0]["url"]
+      results['a'] = vr['requested_formats'][1]["url"]
+      results["title"] = vr['title']
+      results['description'] = vr["description"].replace("\n", "<br>\n")
+      commentsoutput = "";
+      if (len(vr["comments"]) != 0):
+        lines = 0;
+        for a in vr["comments"]:
+          if (lines >= 100):
+            break
+          outputbuffer = "";
+          if ("." in a["id"]):
+            outputbuffer += "<br>\n┗"
+            outputbuffer += a["text"].replace("\n", "<br>\n┗")
+            commentsoutput += outputbuffer
+          else :
+            outputbuffer += "<hr>\n" + a["text"].replace("\n", "<br>\n")
+            commentsoutput += outputbuffer
+          lines += 1
+      commentsoutput += "<hr>"
+      results["comment"] = commentsoutput
+      return results
 
-app = Flask(__name__)
 
-@app.route("/")
-def ytview():
-   return "<p>Hello, World!</p>"
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+template = Jinja2Templates(directory="templates").TemplateResponse
+
+@app.get("/", response_class=HTMLResponse)
+async def ytview():
+   m = videocatch_new("RfQ9OcQxwOs")
+   return template("main.html", {
+      "title":m["title"],
+      "description":m["description"],
+      "v":m["v"],
+      "a":m['a'],
+      "comment":m['comment']
+   })
