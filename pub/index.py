@@ -11,26 +11,27 @@ def videocatch_new(videoid, getcomments=True):
       results["title"] = vr['title']
       results['description'] = vr["description"].replace("\n", "<br>\n")
       commentsoutput = "";
-      if(!vr["comments"]):
+      try:
+          if (len(vr["comments"]) != 0):
+            lines = 0
+            for a in vr["comments"]:
+              if (lines >= 100):
+                break
+              outputbuffer = ""
+              if ("." in a["id"]):
+                outputbuffer += "<br>\n┗"
+                outputbuffer += a["text"].replace("\n", "<br>\n┗")
+                commentsoutput += outputbuffer
+              else :
+                outputbuffer += "<hr>\n" + a["text"].replace("\n", "<br>\n")
+                commentsoutput += outputbuffer
+              lines += 1
+          commentsoutput += "<hr>"
+          results["comment"] = commentsoutput
+          return results
+      except SyntaxError:
           results["comment"] = ""
           return results
-      if (len(vr["comments"]) != 0):
-        lines = 0
-        for a in vr["comments"]:
-          if (lines >= 100):
-            break
-          outputbuffer = ""
-          if ("." in a["id"]):
-            outputbuffer += "<br>\n┗"
-            outputbuffer += a["text"].replace("\n", "<br>\n┗")
-            commentsoutput += outputbuffer
-          else :
-            outputbuffer += "<hr>\n" + a["text"].replace("\n", "<br>\n")
-            commentsoutput += outputbuffer
-          lines += 1
-      commentsoutput += "<hr>"
-      results["comment"] = commentsoutput
-      return results
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
