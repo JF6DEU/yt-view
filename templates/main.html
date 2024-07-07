@@ -61,8 +61,10 @@ loading...
 </table>
 </body>
 <script>
-document.getElementById("vid").src = "{{v}}";
-document.getElementById("aud").src = "{{a}}";
+var vcode = "{{v}}";
+var acode = "{{a}}";
+document.getElementById("vid").src = vcode.replace(/&amp;/g, "&");
+document.getElementById("aud").src = acode.replace(/&amp;/g, "&");
 </script>
 <script src="./resources/js/main.js"></script>
 </html>
