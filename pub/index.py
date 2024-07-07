@@ -3,8 +3,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from yt_dlp import YoutubeDL as y
 def videocatch_new(videoid, getcomments=True):
-    if (".." in videoid || "/" in videoid || "'" in videoid || '"' in videoid)
-      return;
     with y({"getcomments": getcomments, "quiet" : True, "cachedir":False}) as ydl:
       results = {}
       vr = ydl.extract_info("https://www.youtube.com/watch?v=" + videoid, download=False)
