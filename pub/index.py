@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from yt_dlp import YoutubeDL as y
 def videocatch_new(videoid, getcomments=True):
     with y({"getcomments": getcomments, "quiet" : True, "cachedir":False}) as ydl:
