@@ -22,3 +22,28 @@ function loaded(){
 		}
 	}, 15);
 }
+playb = null;
+function play(){
+  gi("aud").play();
+  gi("vid").play();
+  gi("vid").controls = true;
+  playb = setInterval(function(){
+	  if (gi("vid").readyState < 3){
+		  gi("aud").pause();
+	  } else {
+		  if (gi("aud").paused){
+		    gi("aud").play();
+		  }
+	  }
+	  if (gi("aud").readyState < 3){
+		  gi("vid").pause();
+	  } else {
+		  if (gi("vid").paused){
+		    gi("vid").play();
+		  }
+	  }
+	  if (Math.abs(gi("vid").currentTime - gi("aud").currentTime) > 0.3){
+		  gi("aud").currentTime = gi("vid").currentTime;
+	  }
+  }, 10);
+}
