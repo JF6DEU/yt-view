@@ -40,16 +40,24 @@ loading...
     <tr>
       <td class="text-center">
         <hr>
-        {{description}}
-        <hr>
+	<script>
+		var dm = "{{description}}";
+		document.getElementById("desc").insertAdjacentHTML("afterbegin", dm.replace("&lt;", "<").replace("&gt;", ">"));
+	</script>
+	<span id="desc"></span>
+	<hr>
       </td>
     </tr>
     <tr>
       <td class="text-center">
-        {{comment}}
+	<script>
+		var com = "{{comment}}";
+		document.getElementById("desc").insertAdjacentHTML("afterbegin", com.replace("&lt;", "<").replace("&gt;", ">"));
+	</script>
+	<span id="com"></span>
       </td>
     </tr>
-	</tbody>
+</tbody>
 </table>
 </body>
 <script>
