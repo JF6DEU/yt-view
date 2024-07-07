@@ -1,0 +1,53 @@
+.load{
+	width:100%;
+	height:100%;
+	z-index:100;
+	position:absolute;
+	background:#000;
+	display:block;
+	opacity:1;
+}
+.color-white{
+	color:white;
+}
+.load-font-big{
+	font-size:40px;
+	transform:translateX(-25px);
+}
+.load-span{
+	transform:translateX(0);
+	position:absolute;
+	border-radius:50px;
+	background:#fff;
+	width:50px;
+	height:50px;
+}
+.load-animation{
+	animation:loadanimate 3s ease-in-out infinite;
+}
+.load-animation2{
+	transform:translateX(-100px);
+	animation:loadanimate2 3s ease-in-out infinite;
+}
+@keyframes loadanimate{
+    0%{
+		transform:translateX(0);
+	}
+	50%{
+		transform:translateX(-100px);
+	}
+	100%{
+		transform:translateX(0);
+	}
+}
+@keyframes loadanimate2{
+    0%{
+		transform:translateX(-100px);
+	}
+	50%{
+		transform:translateX(0);
+	}
+	100%{
+		transform:translateX(-100px);
+	}
+}
