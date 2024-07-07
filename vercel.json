@@ -4,10 +4,6 @@
        {
            "src": "/pub/index.py",
            "use": "@vercel/python"
-       },
-      {
-           "src": "/resources/*",
-           "use": "@vercel/static-build"
        }
    ],
    "routes": [
