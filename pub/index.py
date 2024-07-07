@@ -29,7 +29,7 @@ def videocatch_new(videoid, getcomments=True):
           commentsoutput += "<hr>"
           results["comment"] = commentsoutput
           return results
-      except SyntaxError:
+      except KeyError:
           results["comment"] = ""
           return results
 
