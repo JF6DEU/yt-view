@@ -42,6 +42,8 @@ template = Jinja2Templates(directory="templates").TemplateResponse
 @app.get("/", response_class=HTMLResponse)
 async def ytview(request: Request, vid:str ,comment:bool=True):
    m = videocatch_new(vid, comment)
+   m["v"] = m["v"].replace("&lt;", "<").replace("&gt;", ">");
+   m["comment"] = m["comment"].replace("&lt;", "<").replace("&gt;", ">");
    return template("main.html", {
        "title":m["title"],
        "description":m["description"],
