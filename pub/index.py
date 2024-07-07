@@ -2,8 +2,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from yt_dlp import YoutubeDL as y
-def videocatch_new(videoid):
-    with y({"getcomments": True, "quiet" : True, "cachedir":False}) as ydl:
+def videocatch_new(videoid, getcomments=True):
+    if (".." in videoid || "/" in videoid || "'" in videoid || '"' in videoid)
+      return;
+    with y({"getcomments": getcomments, "quiet" : True, "cachedir":False}) as ydl:
       results = {}
       vr = ydl.extract_info("https://www.youtube.com/watch?v=" + videoid, download=False)
       results['v'] = vr['requested_formats'][0]["url"]
@@ -34,8 +36,8 @@ app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 template = Jinja2Templates(directory="templates").TemplateResponse
 
 @app.get("/", response_class=HTMLResponse)
-async def ytview(request: Request, vid:str):
-   m = videocatch_new(vid)
+async def ytview(request: Request, vid:str ,comment:bool=True):
+   m = videocatch_new(vid, comment)
    return template("main.html", {
        "title":m["title"],
        "description":m["description"],
