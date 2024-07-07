@@ -11,7 +11,7 @@ def videocatch_new(videoid, getcomments=True):
       results["title"] = vr['title']
       results['description'] = vr["description"].replace("\n", "<br>\n")
       commentsoutput = "";
-      if(!("comments" in vr)):
+      if(!vr["comments"]):
           results["comment"] = ""
           return results
       if (len(vr["comments"]) != 0):
