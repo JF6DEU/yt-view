@@ -35,6 +35,7 @@ def videocatch_new(videoid, getcomments=True):
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+app.mount("/resources", StaticFiles(directory="resources"), name="static")
 template = Jinja2Templates(directory="templates").TemplateResponse
 
 @app.get("/", response_class=HTMLResponse)
