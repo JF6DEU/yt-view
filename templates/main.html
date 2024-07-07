@@ -43,7 +43,7 @@ loading...
 	<span id="desc"></span>
 	<script>
 		var dm = "{{description}}";
-		document.getElementById("desc").insertAdjacentHTML("afterbegin", dm.replace("&lt;", "<").replace("&gt;", ">"));
+		document.getElementById("desc").insertAdjacentHTML("afterbegin", dm.replace("/&lt;/g", "<").replace("/&gt;/g", ">"));
 	</script>
 	<hr>
       </td>
@@ -53,7 +53,7 @@ loading...
 	<span id="com"></span>
 	<script>
 		var com = "{{comment}}";
-		document.getElementById("desc").insertAdjacentHTML("afterbegin", com.replace("&lt;", "<").replace("&gt;", ">"));
+		document.getElementById("desc").insertAdjacentHTML("afterbegin", com.replace("/&lt;/g", "<").replace("/&gt;/g", ">"));
 	</script>
       </td>
     </tr>
