@@ -24,6 +24,7 @@ function loaded(){
 }
 playb = null;
 function play(){
+  document.getElementById("pbutton").disabled = true;
   gi("aud").play();
   gi("vid").play();
   gi("vid").controls = true;
