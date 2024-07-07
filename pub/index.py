@@ -11,12 +11,15 @@ def videocatch_new(videoid, getcomments=True):
       results["title"] = vr['title']
       results['description'] = vr["description"].replace("\n", "<br>\n")
       commentsoutput = "";
+      if(!("comments" in vr)):
+          results["comment"] = ""
+          return results
       if (len(vr["comments"]) != 0):
-        lines = 0;
+        lines = 0
         for a in vr["comments"]:
           if (lines >= 100):
             break
-          outputbuffer = "";
+          outputbuffer = ""
           if ("." in a["id"]):
             outputbuffer += "<br>\n┗"
             outputbuffer += a["text"].replace("\n", "<br>\n┗")
